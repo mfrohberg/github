@@ -43,7 +43,10 @@ var Github = function(options) {
       }
 
       var config = {
-         headers: {},
+         headers: {
+            Accept: raw ? 'application/vnd.github.v3.raw+json' : 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json;charset=UTF-8'
+         },
          method: method,
          params: data ? data : null,
          url: getURL()
@@ -54,9 +57,6 @@ var Github = function(options) {
             'token ' + options.token :
             'Basic ' + b64encode(options.username + ':' + options.password);
       }
-
-      config.headers['Accept'] = raw ? 'application/vnd.github.v3.raw+json' : 'application/vnd.github.v3+json';
-      config.headers['Content-Type'] = 'application/json;charset=UTF-8';
 
       return axios(config)
          .then(function(response) {
@@ -93,7 +93,7 @@ var Github = function(options) {
 
             results.push.apply(results, res);
 
-            var links = (xhr.getResponseHeader('link') || '').split(/\s*,\s*/g);
+            var links = (xhr.headers.link || '').split(/\s*,\s*/g);
             var next = null;
 
             links.forEach(function(link) {
