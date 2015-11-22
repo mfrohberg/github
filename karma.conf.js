@@ -28,6 +28,15 @@ module.exports = function(config) {
          debug: true
       },
 
+      phantomjsLauncher: {
+         debug: true,
+         options: {
+            settings: {
+               webSecurityEnabled: false
+            }
+         }
+      },
+
       coverageReporter: {
          reporters: [
             {
