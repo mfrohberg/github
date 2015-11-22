@@ -1,17 +1,10 @@
 'use strict';
 
-var github, repo, user, testUser, imageB64, imageBlob;
+var Github = require('../src/github.js');
+var testUser = require('./user.json');
+var github, repo, user, imageB64, imageBlob;
 
 if (typeof window === 'undefined') { // We're in NodeJS
-   // Module dependencies
-   var chai = require('chai');
-   var Github = require('../');
-
-   testUser = require('./user.json');
-
-   // Use should flavour for Mocha
-   var should = chai.should();
-
    var fs = require('fs');
    var path = require('path');
 
@@ -46,8 +39,6 @@ if (typeof window === 'undefined') { // We're in NodeJS
 
 describe('Github.Repository', function() {
    before(function() {
-      if (typeof window !== 'undefined') testUser = window.__fixtures__['test/user'];
-
       github = new Github({
          username: testUser.USERNAME,
          password: testUser.PASSWORD,
@@ -142,8 +133,6 @@ var repoTest = Math.floor(Math.random() * (100000 - 0)) + 0;
 
 describe('Creating new Github.Repository', function() {
    before(function() {
-      if (typeof window !== 'undefined') testUser = window.__fixtures__['test/user'];
-
       github = new Github({
          username: testUser.USERNAME,
          password: testUser.PASSWORD,
@@ -380,7 +369,6 @@ describe('Creating new Github.Repository', function() {
 
 describe('deleting a Github.Repository', function() {
    before(function() {
-      if (typeof window !== 'undefined') testUser = window.__fixtures__['test/user'];
       github = new Github({
          username: testUser.USERNAME,
          password: testUser.PASSWORD,
@@ -400,7 +388,6 @@ describe('deleting a Github.Repository', function() {
 
 describe('Repo returns commit errors correctly', function() {
    before(function() {
-      if (typeof window !== 'undefined') testUser = window.__fixtures__['test/user'];
       github = new Github({
          username: testUser.USERNAME,
          password: testUser.PASSWORD,
