@@ -12,7 +12,7 @@ describe('Github.Issue', function() {
          auth: 'basic'
       });
 
-      issues = github.getIssues('mikedeboertest', 'TestRepo');
+      issues = github.getIssues(testUser.USERNAME, 'TestRepo');
    });
 
    it('should list issues', function(done) {
