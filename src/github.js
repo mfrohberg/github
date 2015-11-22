@@ -46,7 +46,6 @@ var Github = function(options) {
          headers: {},
          method: method,
          params: data ? data : null,
-         responseType: 'json',
          url: getURL()
       };
 
@@ -76,7 +75,7 @@ var Github = function(options) {
             } else {
                cb({
                   path: path,
-                  request: JSON.stringify(response.data),
+                  request: response.data,
                   error: response.status
                });
             }
