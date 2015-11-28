@@ -400,7 +400,7 @@ describe('Repo returns commit errors correctly', function() {
       repo.commit('broken-parent-hash', 'broken-tree-hash', 'commit message', function(err) {
          should.exist(err);
          should.exist(err.request);
-         err.request.status.should.equal(422);
+         err.error.should.equal(422);
          done();
       });
    });
