@@ -5,8 +5,10 @@
   "main": "dist/github.js",
   "dependencies": {
     "axios": "^0.7.0",
+    "base-64": "^0.1.0",
     "btoa-umd": "^0.7.8",
-    "es6-promise": "^3.0.2"
+    "es6-promise": "^3.0.2",
+    "utf8": "^2.1.1"
   },
   "devDependencies": {
     "chai": "^3.4.0",
