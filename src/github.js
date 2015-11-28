@@ -12,7 +12,12 @@
 'use strict';
 
 require('es6-promise');
-var b64encode = require('btoa-umd').encode;
+var b64encode = function(string) {
+   var base64Encode = require('base-64').encode;
+   var utf8Encode = require('utf8').encode;
+
+   return base64Encode(utf8Encode(string));
+};
 var axios = require('axios');
 
 // Initial Setup
@@ -48,7 +53,7 @@ var Github = function(options) {
             'Content-Type': 'application/json;charset=UTF-8'
          },
          method: method,
-         params: data ? data : null,
+         data: data ? data : {},
          url: getURL()
       };
 
@@ -62,14 +67,14 @@ var Github = function(options) {
          .then(function(response) {
             cb(
                null,
-               raw ? JSON.stringify(response.data) : response.data ? response.data : true,
+               response.data || true,
                response
             );
          }, function(response) {
             if (response.status === 304) {
                cb(
                   null,
-                  raw ? JSON.stringify(response.data) : response.data || true,
+                  response.data || true,
                   response
                );
             } else {
